@@ -200,12 +200,12 @@ int main()
 ```
 * 基类中没有把析构函数声明为虚函数，因此删除基类指针不会调用B的析构函数，x没被释放导致内存泄漏
 
-![](http://upload-images.jianshu.io/upload_images/5587614-62ea0c51bc3807be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](../images/18-1.png)
 * 将A和B的析构函数声明为虚析构函数将会调用B的析构
 
-![](http://upload-images.jianshu.io/upload_images/5587614-14db7ba883315281.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](../images/18-2.png)
 
-##访问控制与继承
+## 访问控制与继承
 * private只能被该类函数或友元函数访问，不能被其他包括该类对象访问
 * protected可以被该类函数或友元函数和派生类函数访问
 * public可以被该类函数、友元函数、子类函数、该类对象访问
@@ -353,7 +353,7 @@ B : 9
 A : 11
 ```
 
-##多重继承与虚继承
+## 多重继承与虚继承
 * 多重继承的情况下，如果名字在多个基类中被找到，而当前派生类没有覆盖此名字，或没有明确指出调用版本，则对该名字的使用具有二义性
 ```cpp
 struct A { int i = 3; };
@@ -500,11 +500,11 @@ class B : public A {
 };
 ```
 
-![](https://upload-images.jianshu.io/upload_images/5587614-9ddbedad5e8e8738.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](../images/18-3.png)
 
 * 在Linux中查看类的内存布局：直接用下面的命令即可将xxx.cpp的内存布局导出到一个生成的xxx.cpp.002t.class文件中
 ```cpp
 g++ -fdump-class-hierarchy xxx.cpp
 ```
 
-![](https://upload-images.jianshu.io/upload_images/5587614-ca73614356706468.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](../images/18-4.png)
