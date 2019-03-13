@@ -200,10 +200,10 @@ int main()
 ```
 * 基类中没有把析构函数声明为虚函数，因此删除基类指针不会调用B的析构函数，x没被释放导致内存泄漏
 
-![](../images/18-1.png)
+![](../../images/18-1.png)
 * 将A和B的析构函数声明为虚析构函数将会调用B的析构
 
-![](../images/18-2.png)
+![](../../images/18-2.png)
 
 ## 访问控制与继承
 * private只能被该类函数或友元函数访问，不能被其他包括该类对象访问
@@ -500,11 +500,11 @@ class B : public A {
 };
 ```
 
-![](../images/18-3.png)
+![](../../images/18-3.png)
 
 * 在Linux中查看类的内存布局：直接用下面的命令即可将xxx.cpp的内存布局导出到一个生成的xxx.cpp.002t.class文件中
 ```cpp
 g++ -fdump-class-hierarchy xxx.cpp
 ```
 
-![](../images/18-4.png)
+![](../../images/18-4.png)
