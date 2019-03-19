@@ -113,75 +113,75 @@ using namespace std;
 
 int main()
 {
-	int m = 2; // 矩阵1行数
-	int n = 2; // 矩阵1列数和矩阵2行数
-	int r = 2; // 矩阵2列数
-	int temp;
-	vector<int> row; // 用来临时保存行
-	vector<vector<int>> matrix1;
-	vector<vector<int>> matrix2;
-	vector<vector<int>> result;
-	// 矩阵1
-	cout << "Input first(" << m << "*" << n << ")matrix:" << endl;
-	for (int i = 1; i <= m; ++i)
-	{
-		cout << "Type in " << n << " values for row" << i
-			<< " separated by spaces:";
-		for (int j = 1; j <= n; ++j)
-		{
-			cin >> temp;
-			row.push_back(temp);
-		}
-		matrix1.push_back(row);
-		row.clear();
-	}
-	// 矩阵2
-	cout << "Input second(" << n << "*" << r << ")matrix:" << endl;
-	for (int i = 1; i <= n; ++i)
-	{
-		cout << "Type in " << r << " values for row" << i
-			<< " separated by spaces:";
-		for (int j = 1; j <= r; ++j)
-		{
-			cin >> temp;
-			row.push_back(temp);
-		}
-		matrix2.push_back(row);
-		row.clear();
-	}
-	// 计算结果
-	for (int i = 0; i < m; ++i)
-	{
-		for (int j = 0; j < r; ++j)
-		{
-			temp = 0;
-			for (int k = 0; k < n; ++k)
-			{
-				temp += matrix1[i][k] * matrix2[k][j];
-			}
-			row.push_back(temp);
-		}
-		result.push_back(row);
-		row.clear();
-	}
-	// 打印结果
-	for (auto x : matrix1)
-	{
-		for (auto y : x) cout << y << " ";
-		cout << endl;
-	}
-	cout << "times" << endl;
-	for (auto x : matrix2)
-	{
-		for (auto y : x) cout << y << " ";
-		cout << endl;
-	}
-	cout << "equals" << endl;
-	for (auto x : result)
-	{
-		for (auto y : x) cout << y << " ";
-		cout << endl;
-	}
+    int m = 2; // 矩阵1行数
+    int n = 2; // 矩阵1列数和矩阵2行数
+    int r = 2; // 矩阵2列数
+    int temp;
+    vector<int> row; // 用来临时保存行
+    vector<vector<int>> matrix1;
+    vector<vector<int>> matrix2;
+    vector<vector<int>> result;
+    // 矩阵1
+    cout << "Input first(" << m << "*" << n << ")matrix:" << endl;
+    for (int i = 1; i <= m; ++i)
+    {
+        cout << "Type in " << n << " values for row" << i
+            << " separated by spaces:";
+        for (int j = 1; j <= n; ++j)
+        {
+            cin >> temp;
+            row.push_back(temp);
+        }
+        matrix1.push_back(row);
+        row.clear();
+    }
+    // 矩阵2
+    cout << "Input second(" << n << "*" << r << ")matrix:" << endl;
+    for (int i = 1; i <= n; ++i)
+    {
+        cout << "Type in " << r << " values for row" << i
+            << " separated by spaces:";
+        for (int j = 1; j <= r; ++j)
+        {
+            cin >> temp;
+            row.push_back(temp);
+        }
+        matrix2.push_back(row);
+        row.clear();
+    }
+    // 计算结果
+    for (int i = 0; i < m; ++i)
+    {
+        for (int j = 0; j < r; ++j)
+        {
+            temp = 0;
+            for (int k = 0; k < n; ++k)
+            {
+                temp += matrix1[i][k] * matrix2[k][j];
+            }
+            row.push_back(temp);
+        }
+        result.push_back(row);
+        row.clear();
+    }
+    // 打印结果
+    for (auto x : matrix1)
+    {
+        for (auto y : x) cout << y << " ";
+        cout << endl;
+    }
+    cout << "times" << endl;
+    for (auto x : matrix2)
+    {
+        for (auto y : x) cout << y << " ";
+        cout << endl;
+    }
+    cout << "equals" << endl;
+    for (auto x : result)
+    {
+        for (auto y : x) cout << y << " ";
+        cout << endl;
+    }
 }
 ```
 * 大数阶乘
