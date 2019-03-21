@@ -9,7 +9,7 @@ std::string s2 = "hello"; // 拷贝初始化
 std::string s3(10,'c');
 std::string s4 = std::string(10,'c'); // 开销大
 ```
-* char*可以直接转为std::string
+* char\*可以直接转为std::string
 ```cpp
 const char* s1 = "hello";
 std::string s2(s1);
