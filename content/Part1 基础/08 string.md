@@ -1,4 +1,4 @@
-* [std::std::string](https://en.cppreference.com/w/cpp/std::string/basic_std::string)
+* [std::string](https://en.cppreference.com/w/cpp/std::string/basic_std::string)
 
 ## 定义和初始化std::string对象
 * 直接初始化和拷贝初始化
