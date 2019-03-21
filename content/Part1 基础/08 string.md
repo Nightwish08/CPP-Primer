@@ -1,34 +1,34 @@
-* [std::string](https://en.cppreference.com/w/cpp/string/basic_string)
+* [std::std::string](https://en.cppreference.com/w/cpp/std::string/basic_std::string)
 
-## 定义和初始化string对象
+## 定义和初始化std::string对象
 * 直接初始化和拷贝初始化
 ```cpp
-string s("hello"); // 直接初始化
-string s2 = "hello"; // 拷贝初始化
+std::string s("hello"); // 直接初始化
+std::string s2 = "hello"; // 拷贝初始化
 // 多个值的初始化尽量用直接初始化
-string s3(10,'c');
-string s4 = string(10,'c'); // 开销大
+std::string s3(10,'c');
+std::string s4 = std::string(10,'c'); // 开销大
 ```
-* char*可以直接转为string
+* char*可以直接转为std::string
 ```cpp
 const char* s1 = "hello";
-string s2(s1);
+std::string s2(s1);
 ```
-* string用c_str()转char*
+* std::string用c_str()转char\*
 ```cpp
-string s1("hello");
+std::string s1("hello");
 const char* s2 = s1.c_str();
 ```
-## size_type和size_t
-* size_type是string和vector的长度类型，标准库中定义为unsigned
-* size_t是cstddef头文件中的类型，也是unsigned
-* vector下标类型为vector::size_type，数组则是size_t
-* std::string::npos代表size_t的最大值，因为size_t为unsigned，所以-1就是最大值
+## size_type和std::size_t
+* size_type是std::string和std::vector的长度类型，标准库中定义为unsigned
+* std::size_t是cstddef头文件中的类型，也是unsigned
+* std::vector下标类型为std::vector::size_type，数组则是std::size_t
+* std::std::string::npos代表std::size_t的最大值，因为std::size_t为unsigned，所以-1就是最大值
 ```cpp
-static const size_t npos = -1;
+static const std::size_t npos = -1;
 ```
 
-## string对象上的操作
+## std::string对象上的操作
 ```cpp
 os << s;
 is >> s;
@@ -48,42 +48,41 @@ s1 == s2;
 s1 != s2;
 <, <=, >, >=
 ```
-* cout一个string要包含string头文件
+* std::cout一个std::string要包含std::string头文件
 ```cpp
-string s = "hello";
-cout << s; // 必须#include <string>才能用
+std::string s = "hello";
+std::cout << s; // 必须#include <string>才能用
 ```
-* 读取未知数量的string对象
+* 读取未知数量的std::string对象
 ```cpp
 int main()
 {
-    string word;
-    while (cin >> word)
-        cout << word << endl;
+    std::string word;
+    while (cin >> word) std::cout << word << '\n';
     return 0;
 }
 ```
-* getline用来读取一整行，`getline(is, s)`从给定的输入流读内容直到遇到换行符为止（只要一遇到换行符就结束读取并返回结果，即使一开始就是换行符，得到的结果是一个空string），换行符也被读进来了，只不过存到string对象里的时候不存换行符
+* getline用来读取一整行，`getline(is, s)`从给定的输入流读内容直到遇到换行符为止（只要一遇到换行符就结束读取并返回结果，即使一开始就是换行符，得到的结果是一个空std::string），换行符也被读进来了，只不过存到std::string对象里的时候不存换行符
 ```cpp
 int main()
 {
-    string line;
+    std::string line;
     while (getline(cin, line))
-        cout << line << endl; // line中不包含换行符，手动加上
+        std::cout << line << '\n'; // line中不包含换行符，手动加上
     return 0;
 }
 ```
-* `string::size_type`类型是unsigned整型，如果一条表达式已经有了`size()`函数就不要用`int`，避免和带符号数混用，如假设n是一个`具有负值的int`，对`s.size() < n`来说会把n转换成一个比较大的无符号值，判断结果几乎只会是`true`
-* 用加法运算符连接要保证两侧的运算对象至少有一个是string对象才会把另一个自动转换为string
+* `std::string::size_type`类型是unsigned整型，如果一条表达式已经有了`size()`函数就不要用`int`，避免和带符号数混用，如假设n是一个`具有负值的int`，对`s.size() < n`来说会把n转换成一个比较大的无符号值，判断结果几乎只会是`true`
+* 用加法运算符连接要保证两侧的运算对象至少有一个是std::string对象才会把另一个自动转换为std::string
 ```cpp
-string s1 = "hello", s2 = "world";
-string s3 = s1 + ", " + s2 + "\n";
-string s4 = "hello" + ", " + s2; // 错误，"hello" + ", "
-string s5 = s1 + ", " + "world"; // 正确
+std::string s1 = "hello", s2 = "world";
+std::string s3 = s1 + ", " + s2 + "\n";
+std::string s4 = "hello" + ", " + s2; // 错误，"hello" + ", "
+std::string s5 = s1 + ", " + "world"; // 正确
 ```
 
-## 清空string
-* clear删除内容使size为0，但capacity不变，还要用C++11的shrink_to_fit重置capacity使得capacity适应string大小
+## 清空std::string
+* clear删除内容使size为0，但capacity不变，还要用C++11的shrink_to_fit重置capacity使得capacity适应std::string大小
 ```cpp
 #include <iostream>
 #include <string>
@@ -92,12 +91,12 @@ using namespace std;
 
 int main()
 {
-    string s("12345678901234567890");
-    cout << s.size() << " " << s.capacity() << endl;
+    std::string s("12345678901234567890");
+    std::cout << s.size() << " " << s.capacity() << '\n';
     s.clear(); // or s = ""
-    cout << s.size() << " " << s.capacity() << endl;
+    std::cout << s.size() << " " << s.capacity() << '\n';
     s.shrink_to_fit();
-    cout << s.size() << " " << s.capacity() << endl;
+    std::cout << s.size() << " " << s.capacity() << '\n';
     return 0;
 }
 
@@ -107,7 +106,7 @@ int main()
 0 15
 ```
 
-## 处理string对象中的字符
+## 处理std::string对象中的字符
 * cctype头文件包含了一组检测字符特性的函数
 ```cpp
 isalnum(c); // 数字或字母
@@ -126,23 +125,23 @@ toupper(c); // 转大写
 ```
 * 用范围for语句遍历
 ```cpp
-string str("some string");
+std::string str("some std::string");
 for (auto c : str)
-    cout << c << endl;
+    std::cout << c << '\n';
 ```
-* 结合引用修改string对象中字符值
+* 结合引用修改std::string对象中字符值
 ```cpp
-string str("some string");
+std::string str("some std::string");
 for (auto &c : str)
     c = toupper(c);
 ```
-* 使用下标运算符访问置顶位置，下标必须大于等于0而小于s.size()，使用超出范围的下标会引发不可预知的结果（实际上下标为size()编译器不报错，因为string以'\0'结尾，其他超出范围会报错），而如果s为空，s[0]的结果是未定义的（其实是'\0'），所以在用下标前要先确认那个位置有值
+* 使用下标运算符访问置顶位置，下标必须大于等于0而小于s.size()，使用超出范围的下标会引发不可预知的结果（实际上下标为size()编译器不报错，因为std::string以'\0'结尾，其他超出范围会报错），而如果s为空，s[0]的结果是未定义的（其实是'\0'），所以在用下标前要先确认那个位置有值
 ```cpp
-string s("some thing");
+std::string s("some thing");
 if(!s.empty())
     s[0] = toupper(s[0]);
 ```
-* 把下标类型设为`string::size_type`确保下标不会小于0，此时代码只要保证下标小于size()
+* 把下标类型设为`std::string::size_type`确保下标不会小于0，此时代码只要保证下标小于size()
 ```cpp
 // 把s的第一个词改成大写
 for (decltype(s.size()) index = 0;
@@ -151,13 +150,13 @@ for (decltype(s.size()) index = 0;
 ```
 * 子字符串
 ```cpp
-// string substr (size_t pos = 0, size_t len = npos) const;
-string s("hello world");
-string s2 = s.substr(0, 5); // 从位置0开始的5个字符的拷贝，hello
-string s3 = s.substr(6); // world
-string s4 = s.substr(6, 100); // world
-string s5 = s.substr(11); // s5为空
-string s6 = s.substr(12); // 抛出out_of_range异常
-size_t pos = str.find("world"); // pos = 6
-string s7 = str.substr(pos); // world
+// std::string substr (std::size_t pos = 0, std::size_t len = npos) const;
+std::string s("hello world");
+std::string s2 = s.substr(0, 5); // 从位置0开始的5个字符的拷贝，hello
+std::string s3 = s.substr(6); // world
+std::string s4 = s.substr(6, 100); // world
+std::string s5 = s.substr(11); // s5为空
+std::string s6 = s.substr(12); // 抛出out_of_range异常
+std::size_t pos = str.find("world"); // pos = 6
+std::string s7 = str.substr(pos); // world
 ```
